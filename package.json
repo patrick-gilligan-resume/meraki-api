@@ -1,0 +1,15 @@
+{
+  "name": "meraki-api",
+  "version": "1.0.0",
+  "description": "meraki api data",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "patrick gilligan",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0"
+  }
+}
