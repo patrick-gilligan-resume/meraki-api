@@ -7,9 +7,11 @@ import { dirname } from 'path'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import bodyParser from 'body-parser';
-// import {
-//     blinkDevice
-// } from './index.js'
+import {
+    blinkDevice,
+    linkNameToSerial,
+    testArray
+} from './index.js'
 
 //listen port
 let listenPort = 9999
@@ -22,14 +24,17 @@ app.use(bodyParser.urlencoded());
 //handlers
 app.get('/', (req,res) => {
     res.sendFile(__dirname+'/views/index.html')
-})
-app.post('/device', (req,res) => {
-    console.log(req.body);
-    // if (req.body.serial) {
-    //     // await blinkDevice(req.body.serial);
-    // }
-})
-
+});
+app.post('/device', async (req,res) => {
+    // console.log(req.body);
+    if (req.body.serial != '') {
+        await blinkDevice();
+        res.send(`${req.body.serial} is blinking...`)
+    } else if (req.body.name != '') {
+        const sn = await linkNameToSerial(testArray, req.body.name);
+        res.send(`${req.body.name} (sn: ${sn}) is blinking...`)
+    }
+});
 
 
 
