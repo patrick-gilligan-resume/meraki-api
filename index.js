@@ -24,6 +24,18 @@ const getOrganizationIds = async () => {
         })
         .catch(err => {if(err) console.log(err)});
 }
+/* 
+// sample return
+Successful HTTP Status: 200
+[
+  {
+    name: "org",
+    id: 123
+  }
+]
+
+*/
+////////////////////////////////////////////
 
 //get network Ids
 //https://developer.cisco.com/meraki/api-latest/#!getting-started/find-your-network-id
@@ -45,6 +57,19 @@ const getNetworkIds = async () => {
             .catch(err => {if(err) console.log(err)});
     })
 }
+// sample response body
+/*
+Successful HTTP Status: 200
+[
+  {
+    name: "org",
+    id: 123
+    organizationId: 789
+  }
+]
+*/
+////////////////////////////////////////////
+
 
 //return an array of all device information
 //https://developer.cisco.com/meraki/api-latest/#!getting-started/find-your-device-serials
@@ -67,9 +92,22 @@ const getDeviceInfo = async () => {
             .catch(err => {if(err) console.log(err)});
     })
 };
+/*
+// sample response body
+Successful HTTP Status: 200
+[
+  {
+    name: "device",
+    serial: 123456,
+    mac: "1A-2B-3C-DE-4F-50",
+    model: "MS-120"
+  }
+]
+*/
+////////////////////////////////////////////
 
 //blink device LEDs for a given serial number
-const blinkDevice = (serial) => {
+const blinkDevice = async (serial) => {
     return await axios.post(`${merakiBaseUri}/${serial}/blinkLeds`, merakiAuthObject)
         .then(res => {
             if (res.status == 202) {
@@ -77,9 +115,17 @@ const blinkDevice = (serial) => {
             }
         })
         .catch(err => {if(err) console.log(err)});
-}
+};
+////////////////////////////////////////////
 
-console.log(await getOrganizationIds()); //log array of orgs to the console
-console.log(await getNetworkIds());
-const deviceInfo = await getDeviceInfo();
-console.log(deviceInfo);
+// const organizationIds = await getOrganizationIds();
+// const networkIds = await getNetworkIds();
+// const deviceInfo = await getDeviceInfo();
+
+// console.log(organizationIds);
+// console.log(networkIds);
+// console.log(deviceInfo);
+
+export {
+    blinkDevice
+}
