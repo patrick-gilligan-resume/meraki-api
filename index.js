@@ -24,7 +24,6 @@ const getOrganizationIds = async () => {
         })
         .catch(err => {if(err) console.log(err)});
 }
-console.log(await getOrganizationIds()); //log array of orgs to the console
 
 //get network Ids
 //https://developer.cisco.com/meraki/api-latest/#!getting-started/find-your-network-id
@@ -46,7 +45,6 @@ const getNetworkIds = async () => {
             .catch(err => {if(err) console.log(err)});
     })
 }
-console.log(await getNetworkIds());
 
 //return an array of all device information
 //https://developer.cisco.com/meraki/api-latest/#!getting-started/find-your-device-serials
@@ -70,9 +68,6 @@ const getDeviceInfo = async () => {
     })
 };
 
-const deviceInfo = await getDeviceInfo();
-console.log(deviceInfo);
-
 //blink device LEDs for a given serial number
 const blinkDevice = (serial) => {
     return await axios.post(`${merakiBaseUri}/${serial}/blinkLeds`, merakiAuthObject)
@@ -83,3 +78,8 @@ const blinkDevice = (serial) => {
         })
         .catch(err => {if(err) console.log(err)});
 }
+
+console.log(await getOrganizationIds()); //log array of orgs to the console
+console.log(await getNetworkIds());
+const deviceInfo = await getDeviceInfo();
+console.log(deviceInfo);

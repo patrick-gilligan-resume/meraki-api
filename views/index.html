@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Meraki Light Blinker</title>
+		<link rel="stylesheet" href="/public/style.css">
+	</head>
+	<body>
+		<h1>Make a light blink</h1>
+		<p>Add serial number or hostname</p>
+     <form action="/device" id ="device-form" method="post">
+      <label>Serial</label>
+      <input type="text" name="serial" placeholder="serial"><br>
+      <label>Hostname</label>
+      <input type="text" name="hostname" placeholder="hostname"><br><br>
+      <input type="submit" value="Submit">
+    </form> 
+	</body>
+
+</html>
