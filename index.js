@@ -72,3 +72,14 @@ const getDeviceInfo = async () => {
 
 const deviceInfo = await getDeviceInfo();
 console.log(deviceInfo);
+
+//blink device LEDs for a given serial number
+const blinkDevice = (serial) => {
+    return await axios.post(`${merakiBaseUri}/${serial}/blinkLeds`, merakiAuthObject)
+        .then(res => {
+            if (res.status == 202) {
+                console.log(`Device with serial number ${serial} will blink for 20 seconds...`)
+            }
+        })
+        .catch(err => {if(err) console.log(err)});
+}
